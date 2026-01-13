@@ -5,8 +5,8 @@ class Solution {
         int[] prices=new int[n];
         for(int i=0;i<n;i++){
             prices[i]=sc.nextInt();
-            
         }
+        System.out.println(maxProfit(prices));
     }
     public int maxProfit(int[] prices) {
         int buy = prices[0];
