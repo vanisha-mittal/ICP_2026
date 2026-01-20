@@ -1,21 +1,43 @@
+import java.util.Stack;
+
 class Solution {
-    public String removeOuterParentheses(String s) {
+
+    public static String removeOuterParentheses(String s) {
+
         StringBuilder sb = new StringBuilder();
-        Stack<Character> st=new Stack<>();
-        for(char i: s.toCharArray()){
-            if(i=='('){
-                st.push(i);
-                if(st.size()>1){
-                    sb.append(i);
+        Stack<Character> st = new Stack<>();
+
+        // Traverse each character in the string
+        for (char ch : s.toCharArray()) {
+
+            if (ch == '(') {
+
+                st.push(ch);
+
+                // If it's not the outermost '(', keep it
+                if (st.size() > 1) {
+                    sb.append(ch);
                 }
             }
-            else{
+            else {
+
+                // Pop matching '('
                 st.pop();
-                if(!st.isEmpty()){
-                    sb.append(i);
+
+                // If stack is not empty, it's not outermost ')'
+                if (!st.isEmpty()) {
+                    sb.append(ch);
                 }
             }
         }
+
         return sb.toString();
+    }
+
+    public static void main(String[] args) {
+
+        String s = "(()())(())";
+
+        System.out.println(removeOuterParentheses(s)); 
     }
 }

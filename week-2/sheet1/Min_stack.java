@@ -1,42 +1,72 @@
+import java.util.Stack;
+
 class MinStack {
+
+    // Main stack to store all values
     private Stack<Integer> m;
+
+    // Extra stack to track minimum values
     private Stack<Integer> mini;
-    // static int mini;
+
+    // Constructor to initialize stacks
     public MinStack() {
-       m=new Stack<>();
-      mini=new Stack<>();
+        m = new Stack<>();
+        mini = new Stack<>();
     }
-    
+
+    // Push value into stack
     public void push(int val) {
+
+        // Always push into main stack
         m.push(val);
-        if(mini.isEmpty()|| mini.peek()>=val){
+
+        // Push into min stack only if it is empty
+        // or current value is smaller than or equal to current min
+        if (mini.isEmpty() || mini.peek() >= val) {
             mini.push(val);
         }
     }
-    
+
+    // Remove the top element
     public void pop() {
-       int n= m.pop();
-        if(n==mini.peek()){
+
+        int removed = m.pop();
+
+        // If removed element is the current minimum,
+        // remove it from min stack as well
+        if (removed == mini.peek()) {
             mini.pop();
         }
     }
-    
+
+    // Return top element of stack
     public int top() {
         return m.peek();
     }
-    
+
+    // Return minimum element in stack
     public int getMin() {
-        if(!mini.isEmpty()) 
-        return mini.peek();
-        return 0;
+        if (!mini.isEmpty()) {
+            return mini.peek();
+        }
+        return 0; 
+    }
+
+    public static void main(String[] args) {
+
+        MinStack st = new MinStack();
+
+        st.push(5);
+        st.push(3);
+        st.push(7);
+
+        System.out.println(st.getMin()); // 3
+        System.out.println(st.top());    // 7
+
+        st.pop();
+
+        System.out.println(st.top());    // 3
+        System.out.println(st.getMin()); // 3
     }
 }
 
-/**
- * Your MinStack object will be instantiated and called as such:
- * MinStack obj = new MinStack();
- * obj.push(val);
- * obj.pop();
- * int param_3 = obj.top();
- * int param_4 = obj.getMin();
- */
