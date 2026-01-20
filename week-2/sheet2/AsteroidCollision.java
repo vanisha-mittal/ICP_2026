@@ -25,6 +25,9 @@ class Solution {
     }
     public static void main(String[] args){
         int[] arr={5,10,-5};
-        System.out.println(asteroidCollision(arr));
+        int[] ans=(asteroidCollision(arr));
+        for(int i:ans){
+            System.out.print(i+" ");
+        }
     }
 }
