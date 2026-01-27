@@ -16,6 +16,9 @@ class Solution {
     }
     public static void main(String[] args){
         int[] arr={73,74,75,71,69,72,76,73};
-        System.out.println(dailyTemperatures(arr));
+        int[] ans=(dailyTemperatures(arr));
+        for(int i:ans){
+            System.out.print(i+" ");
+        }
     }
 }
